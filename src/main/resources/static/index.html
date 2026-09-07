@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Server</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1 class="sr-only">Media Server</h1>
+
+    <main class="app-shell">
+        <aside class="sidebar" aria-label="Library and profiles">
+            <section class="profile-panel" aria-label="Profiles">
+                <div class="profile-row">
+                    <label class="sr-only" for="user-select">Profile</label>
+                    <select id="user-select">
+                        <option value="">Select a user</option>
+                    </select>
+                    <button id="delete-user-button" type="button" disabled>
+                        Delete User
+                    </button>
+                </div>
+
+                <form id="create-user-form" class="profile-row">
+                    <label class="sr-only" for="new-user-name">
+                        New profile name
+                    </label>
+                    <input id="new-user-name" name="name" type="text"
+                           maxlength="50" placeholder="Enter name"
+                           autocomplete="off" required>
+                    <button id="create-user-button" type="submit">
+                        Create User
+                    </button>
+                </form>
+            </section>
+
+            <section class="library-panel" aria-label="Media library">
+                <nav class="library-tabs" aria-label="Library category">
+                    <label class="sr-only" for="library-search">
+                        Search library
+                    </label>
+                    <input id="library-search" class="library-search"
+                           type="search" placeholder="search"
+                           autocomplete="off">
+                    <button id="movies-tab" class="tab-button active"
+                            type="button">MOVIES</button>
+                    <span aria-hidden="true">/</span>
+                    <button id="shows-tab" class="tab-button"
+                            type="button">SHOWS</button>
+                </nav>
+
+                <div class="library-scroll" tabindex="0"
+                     aria-label="Scrollable movies and shows">
+                    <section id="movies-section">
+                        <h2 class="sr-only">Movies</h2>
+                        <div id="movie-list" class="media-grid"></div>
+                    </section>
+
+                    <section id="shows-section" class="hidden">
+                        <h2 class="sr-only">TV Shows</h2>
+                        <div id="show-list" class="media-grid"></div>
+
+                        <section id="episodes-section" class="hidden" aria-hidden="true">
+                            <h2 id="selected-show-title">Episodes</h2>
+                            <div id="episode-list"></div>
+                        </section>
+                    </section>
+                </div>
+            </section>
+
+            <section class="console-panel" aria-label="Current status">
+                <div class="console-toolbar">
+                    <span class="sr-only">Activity console</span>
+                    <button id="clear-console-button"
+                            type="button">Clear</button>
+                </div>
+                <div id="console-output"
+                     role="log"
+                     aria-live="polite"
+                     aria-relevant="additions">
+                    <p id="user-status" class="console-entry info">
+                        Select or create a profile.
+                    </p>
+                </div>
+                <div class="console-summary" aria-live="polite">
+                    <span id="movie-status">Loading movies...</span>
+                    <span id="show-status">Loading shows...</span>
+                </div>
+            </section>
+        </aside>
+
+        <section class="player-section" aria-labelledby="current-title">
+            <h2 id="current-title">Select something to watch</h2>
+            <video id="player" controls preload="metadata" playsinline></video>
+        </section>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

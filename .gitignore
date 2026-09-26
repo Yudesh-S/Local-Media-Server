@@ -33,3 +33,14 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+/data/
+/backup/
+/data-backup-*/
+/target/

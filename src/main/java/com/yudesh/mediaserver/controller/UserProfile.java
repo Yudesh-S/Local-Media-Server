@@ -11,9 +11,9 @@ import jakarta.persistence.Table;
 @Table(name = "user_profiles")
 public class UserProfile {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
     @Column(nullable = false, unique = true, length = 50)
     private String name;

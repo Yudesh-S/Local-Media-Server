@@ -1,0 +1,32 @@
+services:
+  media-server:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.sqlite.JDBC"
+      SPRING_JPA_DATABASEPLATFORM: "org.hibernate.community.dialect.SQLiteDialect"
+      SERVER_ADDRESS: "0.0.0.0"
+      SERVER_PORT: "8080"
+      MEDIA_MOVIES_PATH: "/media/movies"
+      MEDIA_SHOWS_PATH: "/media/shows"
+      SPRING_DATASOURCE_URL: "jdbc:sqlite:/app/data/media-server.db?foreign_keys=on&busy_timeout=5000"
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "C:/media-library/movies"
+        target: /media/movies
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "C:/media-library/shows"
+        target: /media/shows
+        read_only: true
+        bind:
+          create_host_path: false
+    restart: unless-stopped
